@@ -111,7 +111,8 @@ st.download_button(
 )
 
 
-    st.caption("⚠️ Prototype system for academic demonstration only.")
+st.caption("⚠️ Prototype system for academic demonstration only.")
+
 
 
 
