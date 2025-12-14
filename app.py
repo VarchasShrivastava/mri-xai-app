@@ -61,11 +61,30 @@ if uploaded_file:
     col1.image(image_resized, caption="Original MRI", use_column_width=True)
     col2.image(heatmap, caption="Grad-CAM Heatmap", use_column_width=True)
     col3.image(overlay, caption="Overlay Explanation", use_column_width=True)
+    st.markdown("""
+### 🧠 Why did the model decide this?
+
+The deep learning model analyzes visual patterns in the MRI scan such as:
+- Irregular tissue textures  
+- Intensity variations  
+- Structural abnormalities  
+
+Using **Grad-CAM (Gradient-weighted Class Activation Mapping)**, the highlighted regions
+show which areas of the MRI image most influenced the prediction:
+
+- 🔴 **Red / Yellow regions** → Strong influence on the decision  
+- 🔵 **Blue regions** → Minimal influence  
+
+This explanation improves **transparency and trust**, allowing clinicians or researchers
+to verify whether the model focuses on medically relevant regions.
+""")
+
 
     label = "Tumor Detected" if pred_class == 1 else "No Tumor Detected"
     st.success(f"**Prediction:** {label}")
     st.info(f"**Confidence:** {confidence*100:.2f}%")
 
     st.caption("⚠️ Prototype system for academic demonstration only.")
+
 
 
