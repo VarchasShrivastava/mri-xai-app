@@ -37,12 +37,16 @@ if uploaded_file:
     output = model(input_tensor)
     pred_class = output.argmax(dim=1).item()
     confidence = torch.softmax(output, dim=1)[0][pred_class].item()
+
     if confidence < 0.6:
-    st.warning("⚠️ Low confidence prediction. The model is uncertain. Please consult a medical professional.")
+        st.warning("⚠️ Low confidence prediction. The model is uncertain. Please consult a medical professional.")
     elif confidence < 0.8:
-    st.info("ℹ️ Moderate confidence prediction. Use results cautiously.")
+        st.info("ℹ️ Moderate confidence prediction. Use results cautiously.")
     else:
-    st.success("✅ High confidence prediction.")
+        st.success("✅ High confidence prediction.")
+
+
+
 
 
     cam = gradcam.generate(input_tensor, pred_class)
@@ -63,4 +67,5 @@ if uploaded_file:
     st.info(f"**Confidence:** {confidence*100:.2f}%")
 
     st.caption("⚠️ Prototype system for academic demonstration only.")
+
 
